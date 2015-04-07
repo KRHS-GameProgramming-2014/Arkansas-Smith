@@ -1,4 +1,4 @@
-python "Game.py"
+python "HUD.py"
 
 pause
 del "%0"
