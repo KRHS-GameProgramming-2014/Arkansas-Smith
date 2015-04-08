@@ -9,14 +9,44 @@ from Block import Block
 
 pygame.init()
 
-width = 800
+clock = pygame.time.Clock()
+
+width = 800 
 height = 600
 size = width, height
 
-
-bgColor = r,g,b = 0, 0, 10
-
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("images/Screens/Start Screen.png").convert()
-bgRect = bgImage.get_rect()
+run = False
+
+startButton = Button([width/2, height-100], 
+                     "Art/Button/Start_Base.png", 
+                     "Art/Button/Start_Clicked.png")
+
+while True:
+    while not run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    run = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                startButton.click(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if startButton.release(event.pos):
+                    run = True
+        bgImage = pygame.image.load("BL1.png")
+        bgRect = bgImage.get_rect()
+        screen.blit(bgImage, bgRect)
+        screen.blit(startButton.image, startButton.rect)
+        pygame.display.flip()
+        clock.tick(60)
+        
+    while run:
+        bgImage = pygame.image.load("BL1.png")
+        bgRect = bgImage.get_rect()
+        screen.blit(bgImage, bgRect)
+        pygame.display.flip()
+        clock.tick(60)
+        
+        
