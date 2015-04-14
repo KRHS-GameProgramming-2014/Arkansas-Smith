@@ -7,12 +7,8 @@ class PlayerBase(self,pos):
         self.downImages = [pygame.image.load("images/Player/pballrd.png"),
                            pygame.image.load("images/Player/pballgd.png"),
                            pygame.image.load("images/Player/pballbd.png")]
-        self.leftImages = [pygame.image.load("images/Player/pballrl.png"),
-                           pygame.image.load("images/Player/pballgl.png"),
-                           pygame.image.load("images/Player/pballbl.png")]
-        self.rightImages = [pygame.image.load("images/Player/pballrr.png"),
-                            pygame.image.load("images/Player/pballgr.png"),
-                            pygame.image.load("images/Player/pballbr.png")]
+        self.leftImages = [pygame.image.load("ArkansasSmithLeft.png")]
+        self.rightImages = [pygame.image.load("ArkansasSmithRight.png")]
         self.facing = "up"
         self.changed = False
         self.images = self.upImages
