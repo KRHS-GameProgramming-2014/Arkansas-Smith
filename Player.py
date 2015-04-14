@@ -1,8 +1,20 @@
 import pygame
 
-class PlayerBasw(self,pos,):
-	def __init__(self, pos):
-		Ball.__init__(self, "images/Player/pballbu.png", [0,0], pos)
+class PlayerBase(self,pos,):
+	def __init__(self, image, speed = [0,0], pos = [0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
+		self.image = pygame.image.load(image)
+		self.rect = self.image.get_rect()
+		self.speedx = speed[0]
+		self.speedy = speed[1]
+		self.speed = [self.speedx, self.speedy]
+		self.place(pos)
+		self.didBounceX = False
+		self.didBounceY = False
+		self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
+		self.living = True
+		
+        Ball.__init__(self, "images/Player/pballbu.png", [0,0], pos)
 		self.upImages = [pygame.image.load("images/Player/pballru.png"),
 						 pygame.image.load("images/Player/pballgu.png"),
 						 pygame.image.load("images/Player/pballbu.png")]
