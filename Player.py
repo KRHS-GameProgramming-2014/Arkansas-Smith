@@ -1,5 +1,3 @@
-import pygame
-
 class PlayerBase(self,pos):
     def __init__(self, pos):
         Ball.__init__(self, "images/Player/pballbu.png", [0,0], pos)

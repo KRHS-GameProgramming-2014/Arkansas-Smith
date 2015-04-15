@@ -1,4 +1,4 @@
-python "Player.py"
+python "Game.py"
 
 pause
 del "%0"
