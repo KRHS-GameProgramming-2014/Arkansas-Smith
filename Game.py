@@ -11,7 +11,7 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800 
+width = 800  
 height = 600
 size = width, height
 
@@ -48,5 +48,3 @@ while True:
         screen.blit(bgImage, bgRect)
         pygame.display.flip()
         clock.tick(60)
-        
-        
