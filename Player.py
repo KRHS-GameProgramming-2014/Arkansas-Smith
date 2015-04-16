@@ -1,6 +1,8 @@
-class PlayerBase(self,pos):
+import pygame
+
+class PlayerBase():
     def __init__(self, pos):
-        Ball.__init__(self, "images/Player/pballbu.png", [0,0], pos)
+        Ball.__init__(self, "images/Player/pballbu.png", speed = [0,0], pos)
         self.upImages = [pygame.image.load("ArkansasSimth.png")]
         self.downImages = [pygame.image.load("images/Player/pballrd.png"),
                            pygame.image.load("images/Player/pballgd.png"),

@@ -19,6 +19,7 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
+player1 = Player1(self, i
 run = False
 
 startButton = Button([width/2, height-100], 
