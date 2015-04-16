@@ -1,5 +1,5 @@
 import pygame, sys, random
-from player import playerbase
+from Player import playerbase
 from Player1 import Player1
 from Player2 import Player2
 from HUD import Text
