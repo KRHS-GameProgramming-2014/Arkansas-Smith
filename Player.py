@@ -1,23 +1,17 @@
 import pygame
 
-class PlayerBase():
+class PlayerBase(pygame.sprite.Sprite):
     def __init__(self, pos):
-        pygame.__init__(self, "images/Player/pballbu.png", [0,0], pos)
-        self.upImages = [pygame.image.load("ArkansasSimth.png")]
-        self.downImages = [pygame.image.load("images/Player/pballrd.png"),
-                           pygame.image.load("images/Player/pballgd.png"),
-                           pygame.image.load("images/Player/pballbd.png")]
-        self.leftImages = [pygame.image.load("ArkansasSmithLeft.png")]
-        self.rightImages = [pygame.image.load("ArkansasSmithRight.png")]
+        pygame.sprite.Sprite.__init__(self, self.containers)
+        self.upImage = pygame.image.load("ArkansasSimth.png")
+        self.downImage = pygame.image.load("ArkansasSimth.png")
+        self.leftImage = pygame.image.load("ArkansasSimth.png")
+        self.rightImage = pygame.image.load("ArkansasSimth.png")
+    
         self.facing = "up"
         self.changed = False
-        self.images = self.upImages
-        self.frame = 0
-        self.maxFrame = len(self.images) - 1
-        self.waitCount = 0
-        self.maxWait = 60*.25
-        self.image = self.images[self.frame]
-        self.rect = self.image.get_rect(center = self.rect.center)
+        self.image = self.upImage
+        self.rect = self.image.get_rect(center = pos)
         self.maxSpeed = 10
             
     def update(*args):
@@ -42,27 +36,15 @@ class PlayerBase():
                 #print "hit xWall"
     
     def animate(self):
-        if self.waitCount < self.maxWait:
-            self.waitCount += 1
-        else:
-            self.waitCount = 0
-            self.changed = True
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-        
         if self.changed:    
             if self.facing == "up":
-                self.images = self.upImages
+                self.image = self.upImage
             elif self.facing == "down":
-                self.images = self.downImages
+                self.image = self.downImage
             elif self.facing == "right":
-                self.images = self.rightImages
+                self.image = self.rightImage
             elif self.facing == "left":
-                self.images = self.leftImages
-            
-            self.image = self.images[self.frame]
+                self.image = self.leftImage
     
     def go(self, direction):
         if direction == "up":
