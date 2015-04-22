@@ -5,8 +5,8 @@ class PlayerBase(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.upImage = pygame.image.load("ArkansasSimth.png")
         self.downImage = pygame.image.load("ArkansasSimth.png")
-        self.leftImage = pygame.image.load("ArkansasSimth.png")
-        self.rightImage = pygame.image.load("ArkansasSimth.png")
+        self.leftImage = pygame.image.load("Art/Arkansas Smith Left.png")
+        self.rightImage = pygame.image.load("Art/Arkansas Smith Right.png")
     
         self.facing = "up"
         self.changed = False

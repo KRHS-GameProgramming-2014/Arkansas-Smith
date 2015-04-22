@@ -19,7 +19,7 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("images/Screens/Start Screen.png").convert()
+bgImage = pygame.image.load("Art/Button/Start_Screen.png").convert()
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
@@ -63,7 +63,7 @@ while True:
         pygame.display.flip()
         clock.tick(60)
 
-    BackGround("Background.png")
+    BackGround("Art/Background.png")
 
     player = PlayerBall([width/2, height/2])
 
@@ -100,7 +100,7 @@ while True:
 
         if len(balls) < 10:
             if random.randint(0, 1*60) == 0:
-                Ball("images/Ball/ball.png",
+                Ball("Art/Tiny.png",
                           [random.randint(0,10), random.randint(0,10)],
                           [random.randint(100, width-100), random.randint(100, height-100)])
 
