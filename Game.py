@@ -22,7 +22,7 @@ bgColor = r,g,b = 0, 0, 10
 
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("images/Screens/Start Screen.png").convert()
+bgImage = pygame.image.load("Art/Button/Start_Screen.png").convert()
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
@@ -43,8 +43,8 @@ Score.containers = (all, hudItems)
 
 run = False
 
-startButton = Button([width/2, height-100], 
-                     "Art/Button/Start_Base.png", 
+startButton = Button([width/2, height-100],
+                     "Art/Button/Start_Base.png",
                      "Art/Button/Start_Clicked.png")
 
 while True:
@@ -59,18 +59,18 @@ while True:
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.release(event.pos):
                     run = True
-                    
+
         bgColor = r,g,b
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
         screen.blit(startButton.image, startButton.rect)
         pygame.display.flip()
         clock.tick(60)
-        
-    BackGround("Background.png")
-    
+
+    BackGround("Art/Background.png")
+
     player = PlayerBall([width/2, height/2])
-    
+
     level = Level(size, 50)
     level.loadLevel("1")
 
@@ -79,7 +79,7 @@ while True:
     timerWaitMax = 6
 
     score = Score([width-80, height-25], "Score: ", 36)
-        
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
@@ -101,31 +101,31 @@ while True:
                     player.go("stop down")
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.go("stop left")
-            
+
         if len(balls) < 10:
             if random.randint(0, 1*60) == 0:
-                Ball("images/Ball/ball.png",
+                Ball("Art/Tiny.png",
                           [random.randint(0,10), random.randint(0,10)],
                           [random.randint(100, width-100), random.randint(100, height-100)])
-                          
-                          
+
+
         if timerWait < timerWaitMax:
             timerWait += 1
         else:
             timerWait = 0
             timer.increaseScore(.1)
-        
+
         playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
         ballsHitBalls = pygame.sprite.groupcollide(balls, balls, False, False)
-        
+
         for player in playersHitBalls:
             for ball in playersHitBalls[player]:
                 score.increaseScore(1)
-                
+
         for bully in ballsHitBalls:
             for victem in ballsHitBalls[bully]:
                 bully.collideBall(victem)
-        
+
         all.update(width, height)
 
         

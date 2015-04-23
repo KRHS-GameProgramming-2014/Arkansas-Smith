@@ -1,5 +1,5 @@
 import pygame
-from player import playerbase
+from Player import PlayerBase
 
 
 class Player1():
