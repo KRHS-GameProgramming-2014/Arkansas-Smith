@@ -13,23 +13,15 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800 
-height = 600
-size = width, height
+width = 800
 
-
-bgColor = r,g,b = 0, 0, 10
-
-screen = pygame.display.set_mode(size)
-
-bgImage = pygame.image.load("Art/Button/Start_Screen.png").convert()
+bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
 players = pygame.sprite.Group()
-player1 = Player1(self,args)
-player2 = Player2(self,args)
-
+player1 = pygame.sprite.Group()
+player2 = pygame.sprite.Group()
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
