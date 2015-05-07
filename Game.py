@@ -20,8 +20,8 @@ bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
 players = pygame.sprite.Group()
-player1 = pygame.sprite.Group()
-player2 = pygame.sprite.Group()
+player1 = Player1(self,args)
+player2 = Player2(self,args)
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
@@ -110,7 +110,7 @@ while True:
         playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
         ballsHitBalls = pygame.sprite.groupcollide(balls, balls, False, False)
 
-        for player in playersHitBalls:
+        for player in pHitBalls:
             for ball in playersHitBalls[player]:
                 score.increaseScore(1)
 
