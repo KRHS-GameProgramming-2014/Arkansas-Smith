@@ -13,16 +13,9 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800 
-height = 600
-size = width, height
-players = []
+width = 800
 
-bgColor = r,g,b = 0, 0, 10
-
-screen = pygame.display.set_mode(size)
-
-bgImage = pygame.image.load("Art/Button/Start_Screen.png").convert()
+bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
@@ -81,7 +74,7 @@ while True:
     timerWaitMax = 6
 
     score = Score([width-80, height-25], "Score: ", 36)
-        
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
@@ -103,7 +96,7 @@ while True:
                     player.go("stop down")
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.go("stop left")
-            
+
         if len(balls) < 10:
             if random.randint(0, 1*60) == 0:
                 Ball("images/Ball/ball.png",
