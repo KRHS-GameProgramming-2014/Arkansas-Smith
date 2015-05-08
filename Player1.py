@@ -1,8 +1,7 @@
 import pygame
 from Player import PlayerBase
 
-
-class Player1():
+class Player1(pygame.sprite.Sprite):
     def __init__(self, pos):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.upImage = pygame.image.load("ArkansasSimth.png")
