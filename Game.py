@@ -1,7 +1,5 @@
 import pygame, sys, random
 from Player import PlayerBase
-from Player1 import Player1
-from Player2 import Player2
 from HUD import Text
 from HUD import Score
 from Button import Button
