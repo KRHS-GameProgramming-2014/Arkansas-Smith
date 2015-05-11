@@ -12,14 +12,16 @@ pygame.init()
 clock = pygame.time.Clock()
 
 width = 800
+height = 800
+
+screen = width,height
 
 bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
 players = pygame.sprite.Group()
-player1 = Player1(80)
-player2 = Player2(100)
+
 
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
@@ -27,15 +29,15 @@ blocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
-Player.containers = (all, playerss)
 PlayerBase.containers = (all, players)
 BackGround.containers = (all, backgrounds)
 Block.containers = (all, blocks)
 PlayerBase.containers = (all, players)
 Score.containers = (all, hudItems)
 
-
-player1 = Player1([width/2, height/2])
+player1 = PlayerBase(80)
+player2 = PlayerBase(100)
+#player1 = Player1([width/2, height/2])
 run = False
 
 startButton = Button([width/2, height-100],
@@ -55,7 +57,7 @@ while True:
                 if startButton.release(event.pos):
                     run = True
 
-        bgColor = r,g,b
+        #bgColor = r,g,b
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
         screen.blit(startButton.image, startButton.rect)

@@ -3,15 +3,15 @@ import pygame
 class PlayerBase(pygame.sprite.Sprite):
     def __init__(self, pos):
         pygame.sprite.Sprite.__init__(self, self.containers)
-        self.upImage = pygame.image.load("ArkansasSimth.png")
-        self.downImage = pygame.image.load("ArkansasSimth.png")
+        self.upImage = pygame.image.load("Art/Arkansas Smith.png")
+        self.downImage = pygame.image.load("Art/Arkansas Smith.png")
         self.leftImage = pygame.image.load("Art/Arkansas Smith Left.png")
         self.rightImage = pygame.image.load("Art/Arkansas Smith Right.png")
     
         self.facing = "up"
         self.changed = False
         self.image = self.upImage
-        self.rect = self.image.get_rect(center = pos)
+        #self.rect = self.image.get_rect(center = pos)
         self.maxSpeed = 10
             
     def update(*args):
