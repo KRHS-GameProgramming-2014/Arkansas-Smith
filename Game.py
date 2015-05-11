@@ -12,9 +12,12 @@ pygame.init()
 clock = pygame.time.Clock()
 
 width = 800
-height = 800
+height = 600
+size = width,height
 
-screen = width,height
+
+
+screen = pygame.display.set_mode(size)
 
 bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
 bgRect = bgImage.get_rect()
@@ -57,7 +60,7 @@ while True:
                 if startButton.release(event.pos):
                     run = True
 
-        #bgColor = r,g,b
+        bgColor = r,g,b = 0,12,50
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
         screen.blit(startButton.image, startButton.rect)
@@ -66,7 +69,7 @@ while True:
 
     BackGround("Art/Background.png")
 
-    player = PlayerBall([width/2, height/2])
+    player = PlayerBase([width/2, height/2])
 
     level = Level(size, 50)
     level.loadLevel("1")
