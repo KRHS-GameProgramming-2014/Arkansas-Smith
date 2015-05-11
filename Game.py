@@ -26,12 +26,14 @@ player2 = Player2(100)
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
+players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Player.containers = (all, playerss)
 PlayerBase.containers = (all, players)
 BackGround.containers = (all, backgrounds)
 Block.containers = (all, blocks)
+PlayerBase.containers = (all, players)
 Score.containers = (all, hudItems)
 
 
