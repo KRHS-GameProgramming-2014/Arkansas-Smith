@@ -20,8 +20,8 @@ bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
 players = pygame.sprite.Group()
-player1 = Player1(self,args)
-player2 = Player2(self,args)
+player1 = Player1(80)
+player2 = Player2(100)
 
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
