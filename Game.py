@@ -1,7 +1,5 @@
 import pygame, sys, random
 from Player import PlayerBase
-from Player1 import Player1
-from Player2 import Player2
 from HUD import Text
 from HUD import Score
 from Button import Button
@@ -13,34 +11,40 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800  
+width = 800
 height = 600
-size = width, height
+size = width,height
+
+
 
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("images/Screens/Start Screen.png").convert()
+bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
 players = pygame.sprite.Group()
-player1 = Player1(self,args)
-player2 = Player2(self,args)
+
+
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
+players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
-Ball.containers = (all, balls)
-PlayerBall.containers = (all, players)
+PlayerBase.containers = (all, players)
 BackGround.containers = (all, backgrounds)
 Block.containers = (all, blocks)
+PlayerBase.containers = (all, players)
 Score.containers = (all, hudItems)
 
+player1 = PlayerBase(80)
+player2 = PlayerBase(100)
+#player1 = Player1([width/2, height/2])
 run = False
 
-startButton = Button([width/2, height-100], 
-                     "Art/Button/Start_Base.png", 
+startButton = Button([width/2, height-100],
+                     "Art/Button/Start_Base.png",
                      "Art/Button/Start_Clicked.png")
 
 while True:
@@ -55,18 +59,18 @@ while True:
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.release(event.pos):
                     run = True
-                    
-        bgColor = r,g,b
+
+        bgColor = r,g,b = 0,12,50
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
         screen.blit(startButton.image, startButton.rect)
         pygame.display.flip()
         clock.tick(60)
-        
-    BackGround("Background.png")
-    
-    player = PlayerBall([width/2, height/2])
-    
+
+    BackGround("Art/Background.png")
+
+    player = PlayerBase([width/2, height/2])
+
     level = Level(size, 50)
     level.loadLevel("1")
 
@@ -75,7 +79,7 @@ while True:
     timerWaitMax = 6
 
     score = Score([width-80, height-25], "Score: ", 36)
-        
+
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
@@ -97,7 +101,7 @@ while True:
                     player.go("stop down")
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.go("stop left")
-            
+
         if len(balls) < 10:
             if random.randint(0, 1*60) == 0:
                 Ball("images/Ball/ball.png",
