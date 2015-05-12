@@ -5,22 +5,32 @@ class PlayerBase(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.upImage = pygame.image.load("Art/Arkansas Smith.png")
         self.downImage = pygame.image.load("Art/Arkansas Smith.png")
-        self.leftImage = pygame.image.load("Art/Arkansas Smith Left.png")
-        self.rightImage = pygame.image.load("Art/Arkansas Smith Right.png")
-    
+        self.leftImage = pygame.image.load("Art/Arkansas Smith Right.png")
+        self.rightImage = pygame.image.load("Art/Arkansas Smith Left.png")
         self.facing = "up"
         self.changed = False
         self.image = self.upImage
-        #self.rect = self.image.get_rect(center = pos)
+        self.rect = self.image.get_rect()
+        self.place(pos)
         self.maxSpeed = 10
+        self.speedx = 0
+        self.speedy = 0
+    
+    def place(self, pos):
+        print pos
+        self.rect.center = pos
             
     def update(*args):
         self = args[0]
         width = args[1]
         height = args[2]
-        Ball.update(self, width, height)
         self.animate()
+        self.move()
         self.changed = False
+    
+    def move(self):
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)
         
     def collideWall(self, width, height):
         if not self.didBounceX:
