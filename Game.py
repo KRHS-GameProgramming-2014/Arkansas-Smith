@@ -11,8 +11,8 @@ pygame.init()
 
 clock = pygame.time.Clock()
 
-width = 800
-height = 600
+width = 1250
+height = 750
 size = width,height
 
 
@@ -66,7 +66,7 @@ while True:
 
     BackGround("Art/Background.png")
 
-    level = Level(size, 50)
+    level = Level(size, 60)
     level.loadLevel("1")
 
     player1 = PlayerBase([width/2, height/2])
