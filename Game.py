@@ -99,7 +99,11 @@ while True:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player1.go("stop left")
 
-                          
+        playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
+        
+        for player in playersHitBlocks:
+            for block in playersHitBlocks[player]:
+                player.collideBlock(block)
                           
         if timerWait < timerWaitMax:
             timerWait += 1
@@ -107,19 +111,11 @@ while True:
             timerWait = 0
             timer.increaseScore(.1)
         
-        """
-        playersHitBalls = pygame.sprite.groupcollide(players, balls, False, True)
-        ballsHitBalls = pygame.sprite.groupcollide(balls, balls, False, False)
-        
-        for player in playersHitBalls:
-            for ball in playersHitBalls[player]:
-                score.increaseScore(1)
-                
-        for bully in ballsHitBalls:
-            for victem in ballsHitBalls[bully]:
-                bully.collideBall(victem)
-        """
         all.update(width, height)
+        
+        for player in playersHitBlocks:
+            for wall in playersHitBlocks[player]:
+                player.collideBlock(wall)
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)

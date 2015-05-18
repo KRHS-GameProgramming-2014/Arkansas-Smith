@@ -1,7 +1,7 @@
-import pygame, math
+import pygame
 
 class Block(pygame.sprite.Sprite):
-	def __init__(self, image, pos = [0,0]):
+	def __init__(self, pos = [0,0]):
 		pygame.sprite.Sprite.__init__(self, self.containers)
 		self.image = pygame.image.load("Art/Block.png")
 		self.rect = self.image.get_rect()
@@ -9,6 +9,7 @@ class Block(pygame.sprite.Sprite):
 		self.living = True
 		
 	def place(self, pos):
+		#print pos
 		self.rect.topleft = pos
 		
 	def update(*args):
