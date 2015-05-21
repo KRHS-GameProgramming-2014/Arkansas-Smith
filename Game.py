@@ -5,6 +5,7 @@ from HUD import Score
 from Button import Button
 from BackGround import BackGround
 from Level import Level
+from StartBlock import StartBlock
 from Block import Block
 
 pygame.init()
@@ -28,12 +29,14 @@ players = pygame.sprite.Group()
 
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
+startBlocks = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 PlayerBase.containers = (all, players)
 BackGround.containers = (all, backgrounds)
+StartBlock.containers = (all, startBlocks)
 Block.containers = (all, blocks)
 Score.containers = (all, hudItems)
 
