@@ -32,6 +32,8 @@ class Level():
 			for x, c in enumerate(line):
 				if c == "#":
 					Block([x*self.blockSize,y*self.blockSize])
+                if c == "s":
+                    StartBlock([x*self.blockSize,y*self.blockSize])
 			
 
 
