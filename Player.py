@@ -3,7 +3,7 @@ import pygame
 class PlayerBase(pygame.sprite.Sprite):
     def __init__(self, pos):
         pygame.sprite.Sprite.__init__(self, self.containers)
-        self.upImage = pygame.image.load("Art/Arkansas Smith.png")
+        self.upImage = pygame.image.load("Arkansas Smith Back.png")
         self.downImage = pygame.image.load("Art/Arkansas Smith.png")
         self.leftImage = pygame.image.load("Art/Arkansas Smith Right.png")
         self.rightImage = pygame.image.load("Art/Arkansas Smith Left.png")

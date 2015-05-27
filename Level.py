@@ -34,6 +34,8 @@ class Level():
 					Block([x*self.blockSize,y*self.blockSize])
                 if c == "s":
                     StartBlock([x*self.blockSize,y*self.blockSize])
+                if c == "e":
+                    EndBlock([x*self.blockSize,y*self.blockSize])
 			
 
 

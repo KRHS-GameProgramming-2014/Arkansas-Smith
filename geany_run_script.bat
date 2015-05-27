@@ -1,4 +1,4 @@
-python "Level.py"
+python "Game.py"
 
 pause
 del "%0"

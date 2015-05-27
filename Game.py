@@ -6,6 +6,7 @@ from Button import Button
 from BackGround import BackGround
 from Level import Level
 from StartBlock import StartBlock
+from EndBlock import EndBlock
 from Block import Block
 
 pygame.init()
@@ -30,6 +31,7 @@ players = pygame.sprite.Group()
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 startBlocks = pygame.sprite.Group()
+endBlocks = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
@@ -37,8 +39,14 @@ all = pygame.sprite.OrderedUpdates()
 PlayerBase.containers = (all, players)
 BackGround.containers = (all, backgrounds)
 StartBlock.containers = (all, startBlocks)
+EndBlock.containers = (all, endBlocks)
 Block.containers = (all, blocks)
 Score.containers = (all, hudItems)
+
+level = Level(size, 30)
+lev = 1
+level.loadLevel(lev)
+player = Player(startBlocks.sprites()[0].rect.center)
 
 #player1 = Player1([width/2, height/2])
 run = False
@@ -116,9 +124,6 @@ while True:
         
         all.update(width, height)
         
-        for player in playersHitBlocks:
-            for wall in playersHitBlocks[player]:
-                player.collideBlock(wall)
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)
