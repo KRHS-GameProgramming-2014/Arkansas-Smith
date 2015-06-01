@@ -43,10 +43,6 @@ EndBlock.containers = (all, endBlocks)
 Block.containers = (all, blocks)
 Score.containers = (all, hudItems)
 
-level = Level(size, 30)
-lev = 1
-level.loadLevel(lev)
-player = Player(startBlocks.sprites()[0].rect.center)
 
 #player1 = Player1([width/2, height/2])
 run = False
@@ -78,9 +74,10 @@ while True:
     BackGround("Art/Background.png")
 
     level = Level(size, 60)
-    level.loadLevel("1")
+    lev = 1
+    level.loadLevel(lev)
 
-    player1 = PlayerBase([width/2, height/2])
+    player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
 
     timer = Score([80, height - 25], "Time: ", 36)
     timerWait = 0
@@ -111,11 +108,24 @@ while True:
                     player1.go("stop left")
 
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
+        playersHitEnds = pygame.sprite.groupcollide(players, endBlocks, False, False)
         
+
         for player in playersHitBlocks:
             for block in playersHitBlocks[player]:
                 player.collideBlock(block)
-                          
+               
+        for player in playersHitEnds:
+            for wall in playersHitEnds[player]:
+                for obj in all.sprites():
+                    obj.kill()
+                #all.update(width, height)
+                BackGround("Art/Background.png")
+                lev += 1
+                print lev, len(all.sprites())
+                level.loadLevel(lev)
+                player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
+                
         if timerWait < timerWaitMax:
             timerWait += 1
         else:
