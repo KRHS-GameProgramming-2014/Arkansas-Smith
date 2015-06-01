@@ -31,7 +31,9 @@ class Level():
 		for y, line in enumerate(lines):
 			for x, c in enumerate(line):
 				if c == "#":
-					Block("Block.png", [x*self.blockSize,y*self.blockSize])
+					Block([x*self.blockSize,y*self.blockSize])
+                if c == "s":
+                    StartBlock([x*self.blockSize,y*self.blockSize])
 			
 
 

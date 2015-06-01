@@ -5,36 +5,41 @@ class PlayerBase(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.upImage = pygame.image.load("Art/Arkansas Smith.png")
         self.downImage = pygame.image.load("Art/Arkansas Smith.png")
-        self.leftImage = pygame.image.load("Art/Arkansas Smith Left.png")
-        self.rightImage = pygame.image.load("Art/Arkansas Smith Right.png")
-    
+        self.leftImage = pygame.image.load("Art/Arkansas Smith Right.png")
+        self.rightImage = pygame.image.load("Art/Arkansas Smith Left.png")
         self.facing = "up"
         self.changed = False
         self.image = self.upImage
-        #self.rect = self.image.get_rect(center = pos)
+        self.rect = self.image.get_rect()
+        self.place(pos)
         self.maxSpeed = 10
+        self.speedx = 0
+        self.speedy = 0
+    
+    def place(self, pos):
+        print pos
+        self.rect.center = pos
             
     def update(*args):
         self = args[0]
         width = args[1]
         height = args[2]
-        Ball.update(self, width, height)
         self.animate()
+        self.move()
         self.changed = False
-        
-    def collideWall(self, width, height):
-        if not self.didBounceX:
-            #print "trying to hit Wall"
-            if self.rect.left < 0 or self.rect.right > width:
-                self.speedx = 0
-                self.didBounceX = True
-                #print "hit xWall"
-        if not self.didBounceY:
-            if self.rect.top < 0 or self.rect.bottom > height:
-                self.speedy = 0
-                self.didBounceY = True
-                #print "hit xWall"
     
+    def move(self):
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)
+        
+    def collideBlock(self, other):
+        self.speedx = -self.speedx
+        self.speedy = -self.speedy
+        self.move()
+        self.move()
+        self.speedx = 0
+        self.speedy = 0
+            
     def animate(self):
         if self.changed:    
             if self.facing == "up":
@@ -45,6 +50,22 @@ class PlayerBase(pygame.sprite.Sprite):
                 self.image = self.rightImage
             elif self.facing == "left":
                 self.image = self.leftImage
+                
+    def collideWall(self, other):
+        if not self.didBounceX:
+            self.speedx = -self.speedx
+            self.move()
+            self.move()
+            self.speedx = 0
+            self.didBouncex = True
+        if not self.didBounceY:
+            self.speedy = -self.speedy
+            self.move()
+            self.move()
+            self.move()
+            self.speedy = 0
+            self.didBounceY = True
+            #print "hit Ball"
     
     def go(self, direction):
         if direction == "up":
