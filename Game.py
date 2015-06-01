@@ -21,7 +21,7 @@ size = width,height
 
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
+bgImage = pygame.image.load("TitleAS.png")
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
@@ -48,8 +48,8 @@ Score.containers = (all, hudItems)
 run = False
 
 startButton = Button([width/2, height-100],
-                     "Art/Button/Start_Base.png",
-                     "Art/Button/Start_Clicked.png")
+                     "Art/Button/StartButtonAS.png",
+                     "Art/Button/StartButtonAS.png")
 
 while True:
     while not run:

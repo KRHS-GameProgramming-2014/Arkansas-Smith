@@ -4,8 +4,8 @@ from Player import PlayerBase
 class Player1(pygame.sprite.Sprite):
     def __init__(self, pos):
         pygame.sprite.Sprite.__init__(self, self.containers)
-        self.upImage = pygame.image.load("ArkansasSimth.png")
-        self.downImage = pygame.image.load("ArkansasSimth.png")
+        self.upImage = pygame.image.load("ArkBack.png")
+        self.downImage = pygame.image.load("Art/ArkansasSimth.png")
         self.leftImage = pygame.image.load("Art/Arkansas Smith Left.png")
         self.rightImage = pygame.image.load("Art/Arkansas Smith Right.png")
     
