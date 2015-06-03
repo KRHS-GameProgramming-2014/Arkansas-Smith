@@ -6,6 +6,7 @@ from Button import Button
 from BackGround import BackGround
 from Level import Level
 from StartBlock import StartBlock
+from EndBlock import EndBlock
 from Block import Block
 
 pygame.init()
@@ -20,7 +21,7 @@ size = width,height
 
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("Art/BackupBackgroundThanks Gage.png")
+bgImage = pygame.image.load("TitleAS.png")
 bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
@@ -30,6 +31,7 @@ players = pygame.sprite.Group()
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 startBlocks = pygame.sprite.Group()
+endBlocks = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
@@ -37,15 +39,17 @@ all = pygame.sprite.OrderedUpdates()
 PlayerBase.containers = (all, players)
 BackGround.containers = (all, backgrounds)
 StartBlock.containers = (all, startBlocks)
+EndBlock.containers = (all, endBlocks)
 Block.containers = (all, blocks)
 Score.containers = (all, hudItems)
+
 
 #player1 = Player1([width/2, height/2])
 run = False
 
 startButton = Button([width/2, height-100],
-                     "Art/Button/Start_Base.png",
-                     "Art/Button/Start_Clicked.png")
+                     "Art/Button/StartButtonAS.png",
+                     "Art/Button/StartButtonAS.png")
 
 while True:
     while not run:
@@ -70,9 +74,10 @@ while True:
     BackGround("Art/Background.png")
 
     level = Level(size, 60)
-    level.loadLevel("1")
+    lev = 1
+    level.loadLevel(lev)
 
-    player1 = PlayerBase([width/2, height/2])
+    player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
 
     timer = Score([80, height - 25], "Time: ", 36)
     timerWait = 0
@@ -103,11 +108,24 @@ while True:
                     player1.go("stop left")
 
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
+        playersHitEnds = pygame.sprite.groupcollide(players, endBlocks, False, False)
         
+
         for player in playersHitBlocks:
             for block in playersHitBlocks[player]:
                 player.collideBlock(block)
-                          
+               
+        for player in playersHitEnds:
+            for wall in playersHitEnds[player]:
+                for obj in all.sprites():
+                    obj.kill()
+                #all.update(width, height)
+                BackGround("Art/Background.png")
+                lev += 1
+                print lev, len(all.sprites())
+                level.loadLevel(lev)
+                player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
+                
         if timerWait < timerWaitMax:
             timerWait += 1
         else:
@@ -116,9 +134,6 @@ while True:
         
         all.update(width, height)
         
-        for player in playersHitBlocks:
-            for wall in playersHitBlocks[player]:
-                player.collideBlock(wall)
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)
