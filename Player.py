@@ -38,7 +38,7 @@ class PlayerBase(pygame.sprite.Sprite):
         self.move()
         self.move()
         self.speedx = 0
-        self.speedy = 0
+        self.speedy = 0       
             
     def animate(self):
         if self.changed:    

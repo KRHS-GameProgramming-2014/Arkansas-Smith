@@ -8,6 +8,7 @@ from Level import Level
 from StartBlock import StartBlock
 from EndBlock import EndBlock
 from Block import Block
+from PushBlock import PushBlock
 
 pygame.init()
 
@@ -33,6 +34,7 @@ backgrounds = pygame.sprite.Group()
 startBlocks = pygame.sprite.Group()
 endBlocks = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
+pushblocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
@@ -41,6 +43,7 @@ BackGround.containers = (all, backgrounds)
 StartBlock.containers = (all, startBlocks)
 EndBlock.containers = (all, endBlocks)
 Block.containers = (all, blocks)
+PushBlock.containers = (all, pushblocks)
 Score.containers = (all, hudItems)
 
 
@@ -108,12 +111,17 @@ while True:
                     player1.go("stop left")
 
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
+        playersHitPushBlocks = pygame.sprite.groupcollide(players, pushblocks, False, False)
         playersHitEnds = pygame.sprite.groupcollide(players, endBlocks, False, False)
         
 
         for player in playersHitBlocks:
             for block in playersHitBlocks[player]:
                 player.collideBlock(block)
+        
+        for player in playersHitPushBlocks:
+            for pushblock in playersHitPushBlocks[player]:
+                pushblock.collidePlayer(player)
                
         for player in playersHitEnds:
             for wall in playersHitEnds[player]:
