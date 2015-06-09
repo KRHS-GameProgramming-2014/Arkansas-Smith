@@ -8,21 +8,27 @@ class PushBlock(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, [size,size])
         self.rect = self.image.get_rect()
         self.place(pos)
+        self.lastMove = ""
         self.living = True
         
     def collidePlayer(self, player):
-        if (math.fabs(self.rect.center[0]-player.rect.center[0]+10) > 
+        if (math.fabs(self.rect.center[0]-player.rect.center[0]+3) > 
                 math.fabs(self.rect.center[1]-player.rect.center[1])):
             if player.rect.center[0] > self.rect.center[0]:
                 self.rect = self.rect.move([-self.rect.width,0])
+                self.lastMove = "left"
             elif player.rect.center[0] < self.rect.center[0]:
                 self.rect = self.rect.move([self.rect.width,0])
+                self.lastMove = "right"
         else:
             if player.rect.center[1] > self.rect.center[1]:
                 self.rect = self.rect.move([0, -self.rect.height])
+                self.lastMove = "up"
             elif player.rect.center[1] < self.rect.center[1]:
                 self.rect = self.rect.move([0, self.rect.height])
-
+                self.lastMove = "down"
+        
+        
     def place(self, pos):
         #print pos
         self.rect.topleft = pos

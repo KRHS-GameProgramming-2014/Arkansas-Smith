@@ -116,6 +116,7 @@ while True:
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
         playersHitPushBlocks = pygame.sprite.groupcollide(players, pushblocks, False, False)
         playersHitEnds = pygame.sprite.groupcollide(players, endBlocks, False, False)
+
         pushblocksHitKeyBlocks = pygame.sprite.groupcollide(pushblocks, keyblocks, False, False)
             
 
@@ -126,6 +127,24 @@ while True:
         for player in playersHitPushBlocks:
             for pushblock in playersHitPushBlocks[player]:
                 pushblock.collidePlayer(player)
+                #this might introduce a noticable lag in the game when pushing push blocks...revise if you have to
+                pushBlocksHitBlocks = pygame.sprite.groupcollide(players, pushblocks, False, False)
+                for pushBlock in playersHitBlocks:
+                    for block in playersHitBlocks[pushBlock]:
+                        pushBlock.collideBlock(block) # write me to undo the last move 
+                pushBlocksHitEnds = pygame.sprite.groupcollide(pushblocks, pushblocks, False, False)
+                for pushBlock in pushBlocksHitPushBlocks:
+                    for block in pushBlocksHitEnds[pushBlock]:
+                        pushBlock.collideBlock(block)
+                pushBlocksHitEnds = pygame.sprite.groupcollide(pushblocks, endBlocks, False, False)
+                for pushBlock in pushBlocksHitEnds:
+                    for block in pushBlocksHitEnds[pushBlock]:
+                        pushBlock.collideBlock(block)
+                pushBlocksHitPlayers = pygame.sprite.groupcollide(pushblocks, players, False, False)
+                for pushBlock in pushBlocksHitPlayers:
+                    for player in pushBlocksHitPlayers[pushBlock]:
+                        player.collidePushBlock(pushBlock) # write me to undo the last move 
+
         
         endblock = endBlocks.sprites()[0]
 
@@ -144,6 +163,8 @@ while True:
                     player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
         else:
             endblock.lock()
+
+                
 
 
         if timerWait < timerWaitMax:
