@@ -132,7 +132,7 @@ while True:
                 for pushBlock in playersHitBlocks:
                     for block in playersHitBlocks[pushBlock]:
                         pushBlock.collideBlock(block) # write me to undo the last move 
-                pushBlocksHitEnds = pygame.sprite.groupcollide(pushblocks, pushblocks, False, False)
+                pushBlocksHitPushBlocks = pygame.sprite.groupcollide(pushblocks, pushblocks, False, False)
                 for pushBlock in pushBlocksHitPushBlocks:
                     for block in pushBlocksHitEnds[pushBlock]:
                         pushBlock.collideBlock(block)
