@@ -44,7 +44,7 @@ class Level():
                 if c == "p":
                     PushBlock([x*self.blockSize,y*self.blockSize],self.blockSize)
                 if c == "k":
-                    KeyBlock([x*self.blockSize,y*self.blockSize],self.blockSize)
+                    KeyBlock([x*self.blockSize+30,y*self.blockSize+30])
 
 
 

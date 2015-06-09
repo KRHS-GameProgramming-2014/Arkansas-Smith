@@ -117,7 +117,7 @@ while True:
         playersHitPushBlocks = pygame.sprite.groupcollide(players, pushblocks, False, False)
         playersHitEnds = pygame.sprite.groupcollide(players, endBlocks, False, False)
         pushblocksHitKeyBlocks = pygame.sprite.groupcollide(pushblocks, keyblocks, False, False)
-        
+            
 
         for player in playersHitBlocks:
             for block in playersHitBlocks[player]:
@@ -127,25 +127,25 @@ while True:
             for pushblock in playersHitPushBlocks[player]:
                 pushblock.collidePlayer(player)
         
-        for pushblock in pushblocksHitKeyBlocks:
-            if bool(endBlocks.sprites):
-                for end in endBlocks:
-                    end.unlock()
+        endblock = endBlocks.sprites()[0]
 
-                for player in playersHitEnds:
-                    for wall in playersHitEnds[player]:
-                        for obj in all.sprites():
-                            obj.kill()
-                        #all.update(width, height)
-                        BackGround("Art/Background.png")
-                        lev += 1
-                        print lev, len(all.sprites())
-                        level.loadLevel(lev)
-                        player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
-            else:
-                for end in endBlocks:
-                    end.lock()
-                
+        if bool(pushblocksHitKeyBlocks):
+            endblock.unlock()
+
+            for player in playersHitEnds:
+                for wall in playersHitEnds[player]:
+                    for obj in all.sprites():
+                        obj.kill()
+                    #all.update(width, height)
+                    BackGround("Art/Background.png")
+                    lev += 1
+                    print lev, len(all.sprites())
+                    level.loadLevel(lev)
+                    player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
+        else:
+            endblock.lock()
+
+
         if timerWait < timerWaitMax:
             timerWait += 1
         else:
