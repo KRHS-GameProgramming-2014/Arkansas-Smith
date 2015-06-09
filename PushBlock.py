@@ -22,6 +22,7 @@ class PushBlock(pygame.sprite.Sprite):
                 self.rect = self.rect.move([0, -self.rect.height])
             elif player.rect.center[1] < self.rect.center[1]:
                 self.rect = self.rect.move([0, self.rect.height])
+
     def place(self, pos):
         #print pos
         self.rect.topleft = pos

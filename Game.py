@@ -9,6 +9,7 @@ from StartBlock import StartBlock
 from EndBlock import EndBlock
 from Block import Block
 from PushBlock import PushBlock
+from KeyBlock import KeyBlock
 
 pygame.init()
 
@@ -35,6 +36,7 @@ startBlocks = pygame.sprite.Group()
 endBlocks = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
 pushblocks = pygame.sprite.Group()
+keyblocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
@@ -44,6 +46,7 @@ StartBlock.containers = (all, startBlocks)
 EndBlock.containers = (all, endBlocks)
 Block.containers = (all, blocks)
 PushBlock.containers = (all, pushblocks)
+KeyBlock.containers = (all, keyblocks)
 Score.containers = (all, hudItems)
 
 
@@ -113,6 +116,7 @@ while True:
         playersHitBlocks = pygame.sprite.groupcollide(players, blocks, False, False)
         playersHitPushBlocks = pygame.sprite.groupcollide(players, pushblocks, False, False)
         playersHitEnds = pygame.sprite.groupcollide(players, endBlocks, False, False)
+        pushblocksHitKeyBlocks = pygame.sprite.groupcollide(pushblocks, keyblocks, False, False)
         
 
         for player in playersHitBlocks:
@@ -122,17 +126,25 @@ while True:
         for player in playersHitPushBlocks:
             for pushblock in playersHitPushBlocks[player]:
                 pushblock.collidePlayer(player)
-               
-        for player in playersHitEnds:
-            for wall in playersHitEnds[player]:
-                for obj in all.sprites():
-                    obj.kill()
-                #all.update(width, height)
-                BackGround("Art/Background.png")
-                lev += 1
-                print lev, len(all.sprites())
-                level.loadLevel(lev)
-                player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
+        
+        for pushblock in pushblocksHitKeyBlocks:
+            if bool(endBlocks.sprites):
+                for end in endBlocks:
+                    end.unlock()
+
+                for player in playersHitEnds:
+                    for wall in playersHitEnds[player]:
+                        for obj in all.sprites():
+                            obj.kill()
+                        #all.update(width, height)
+                        BackGround("Art/Background.png")
+                        lev += 1
+                        print lev, len(all.sprites())
+                        level.loadLevel(lev)
+                        player1 = PlayerBase(startBlocks.sprites()[0].rect.center)
+            else:
+                for end in endBlocks:
+                    end.lock()
                 
         if timerWait < timerWaitMax:
             timerWait += 1

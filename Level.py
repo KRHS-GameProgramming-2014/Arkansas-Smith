@@ -4,6 +4,7 @@ from Block import Block
 from StartBlock import StartBlock
 from EndBlock import EndBlock
 from PushBlock import PushBlock
+from KeyBlock import KeyBlock
 
 
 class Level():
@@ -42,11 +43,9 @@ class Level():
                     EndBlock([x*self.blockSize,y*self.blockSize])
                 if c == "p":
                     PushBlock([x*self.blockSize,y*self.blockSize],self.blockSize)
+                if c == "k":
+                    KeyBlock([x*self.blockSize,y*self.blockSize],self.blockSize)
 
 
-
-
-
-\
 
 
