@@ -17,8 +17,6 @@ width = 1250
 height = 750
 size = width,height
 
-
-
 screen = pygame.display.set_mode(size)
 
 bgImage = pygame.image.load("TitleAS.png")
@@ -26,7 +24,6 @@ bgRect = bgImage.get_rect()
 
 balls = pygame.sprite.Group()
 players = pygame.sprite.Group()
-
 
 hudItems = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
