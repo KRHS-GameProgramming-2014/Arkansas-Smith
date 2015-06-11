@@ -27,7 +27,19 @@ class PushBlock(pygame.sprite.Sprite):
             elif player.rect.center[1] < self.rect.center[1]:
                 self.rect = self.rect.move([0, self.rect.height])
                 self.lastMove = "down"
-        
+     
+    def collideBlock(self,block):
+        if self != block:
+            print "not myself"
+            if self.lastMove == "down":
+                 self.rect = self.rect.move([0, -self.rect.height])
+            elif self.lastMove == "up":
+                 self.rect = self.rect.move([0, self.rect.height])
+            elif self.lastMove == "left":
+                 self.rect = self.rect.move([self.rect.width,0])
+            elif self.lastMove == "right":
+                 self.rect = self.rect.move([-self.rect.width,0])
+            
         
     def place(self, pos):
         #print pos
