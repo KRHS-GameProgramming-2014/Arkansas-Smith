@@ -38,7 +38,15 @@ class PlayerBase(pygame.sprite.Sprite):
         self.move()
         self.move()
         self.speedx = 0
-        self.speedy = 0
+        self.speedy = 0 
+    
+    def collidePushBlock(self, other):
+        self.speedx = -self.speedx
+        self.speedy = -self.speedy
+        self.move()
+        self.move()
+        self.speedx = 0
+        self.speedy = 0 
             
     def animate(self):
         if self.changed:    

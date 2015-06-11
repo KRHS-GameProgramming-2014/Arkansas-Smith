@@ -3,6 +3,8 @@ import pygame, sys, math
 from Block import Block
 from StartBlock import StartBlock
 from EndBlock import EndBlock
+from PushBlock import PushBlock
+from KeyBlock import KeyBlock
 
 
 class Level():
@@ -34,17 +36,16 @@ class Level():
         for y, line in enumerate(lines):
             for x, c in enumerate(line):
                 if c == "#":
-                    Block([x*self.blockSize,y*self.blockSize])
+                    Block([x*self.blockSize,y*self.blockSize], self.blockSize)
                 if c == "s":
                     StartBlock([x*self.blockSize,y*self.blockSize])
                 if c == "e":
                     EndBlock([x*self.blockSize,y*self.blockSize])
-            
+                if c == "p":
+                    PushBlock([x*self.blockSize,y*self.blockSize],self.blockSize)
+                if c == "k":
+                    KeyBlock([x*self.blockSize+30,y*self.blockSize+30])
 
 
-
-
-
-\
 
 
